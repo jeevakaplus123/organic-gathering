@@ -5,10 +5,12 @@ const style = StyleSheet.create({
 primaryBtnText: {
     alignSelf: "center",
     color: 'white',
+    fontFamily: "HelveticaNeue-Light",
     fontSize: 16
 },
 lightBtnText: {
     alignSelf: "center",
+    fontFamily: "HelveticaNeue-Light",
     color: '#3b4761',
     fontSize: 16
 },

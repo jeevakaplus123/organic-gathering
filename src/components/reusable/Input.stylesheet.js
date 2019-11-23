@@ -12,11 +12,12 @@ const style = StyleSheet.create({
     input: {
         color: '#3b4761',
         fontSize: 18,
-        fontWeight: "300",
+        fontFamily: "HelveticaNeue-Medium",
         height: platformSwitcher({ios :30,android: 45})
     },
     label: {
         color: '#49EACA',
+        fontFamily: "HelveticaNeue-Light",
         fontSize: 15,
         paddingBottom: 5
     },

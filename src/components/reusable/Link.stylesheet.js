@@ -2,8 +2,9 @@ import { StyleSheet } from "react-native"
 
 const style = StyleSheet.create({
     a: {
-        fontSize: rem(0.93),
-        lineHeight: rem(1.375),
+        fontSize: 16,
+        lineHeight: 20,
+        fontFamily: "HelveticaNeue-Light",
         textDecorationLine: "underline",
         color: "#3b4761"
     }
