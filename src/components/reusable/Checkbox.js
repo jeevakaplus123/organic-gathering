@@ -13,7 +13,7 @@ import React, { PureComponent } from "react"
 import { View, TouchableOpacity, Text } from "react-native"
 import PropTypes from "prop-types"
 import st from "./Checkbox.stylesheet"
-import FaIconPro from "react-native-vector-icons/FontAwesome5Pro"
+import FaIconPro from "react-native-vector-icons/FontAwesome5"
 
 class Checkbox extends PureComponent {
     constructor(props) {

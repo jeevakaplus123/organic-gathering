@@ -15,6 +15,11 @@ const style = StyleSheet.create({
         fontFamily: "HelveticaNeue-Medium",
         height: platformSwitcher({ios :30,android: 45})
     },
+    row: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
     label: {
         color: '#49EACA',
         fontFamily: "HelveticaNeue-Light",
