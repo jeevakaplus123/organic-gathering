@@ -6,10 +6,18 @@ import Auth from './features/auth/AuthScreen'
 import Home from './features/home/Home.container'
 import Register from './features/register/Register.container'
 import Login from './features/login/Login.container'
+import Landing from './features/landing/Landing.container'
+import ForgotPassword from './features/forgotPassword/ForgotPassword.container'
 
 const RootStack = createStackNavigator({
     Auth: {
         screen: Auth,
+        navigationOptions: {
+            header: null,
+        },
+    },
+    Landing: {
+        screen: Landing,
         navigationOptions: {
             header: null,
         },
@@ -26,6 +34,15 @@ const RootStack = createStackNavigator({
             header: null,
         },
     },
+    ForgotPassword: {
+        screen: ForgotPassword,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#3b4761"
+        },
+        headerTintColor: "#ffffff"
+        },
+    },
     Home: {
         screen: Home,
         navigationOptions: {
@@ -33,7 +50,7 @@ const RootStack = createStackNavigator({
         },
     }
 }, {
-    initialRouteName: 'Login',
+    initialRouteName: 'Landing',
 });
 const NavigationStack = createAppContainer(RootStack)
 export default NavigationStack;
