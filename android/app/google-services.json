@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "909458343921",
+    "firebase_url": "https://organic-gathering-5bb02.firebaseio.com",
+    "project_id": "organic-gathering-5bb02",
+    "storage_bucket": "organic-gathering-5bb02.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909458343921:android:d6338b3408491202596650",
+        "android_client_info": {
+          "package_name": "com.organic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909458343921-f2u3c36p2nl9a0ja1ha2qpgs43b85o0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQwvDnygL1EMPl-m_Qz8HokwTKYUYacYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909458343921-f2u3c36p2nl9a0ja1ha2qpgs43b85o0k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
