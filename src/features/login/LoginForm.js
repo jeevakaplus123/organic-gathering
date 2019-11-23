@@ -3,7 +3,7 @@ import { Text, View, KeyboardAvoidingView, ScrollView } from "react-native"
 import { EmailInput, Button, PasswordInput, Link, Checkbox } from "../../components/reusable"
 import style from "./Login.stylesheet"
 
-const LoginForm = ({ onPressLogin, onPressRegister, handleOnChange, fields }) =>
+const LoginForm = ({ onPressLogin, onPressRegister,onPressForgotPassword, handleOnChange, fields, keepMeLoggedIn, onPressKeepMeLoggedIn }) =>
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
       <Text style={style.title}>Sign In</Text>
       <EmailInput
@@ -27,12 +27,12 @@ const LoginForm = ({ onPressLogin, onPressRegister, handleOnChange, fields }) =>
     <Checkbox
       code="keepMeLoggedIn"
       disabled={false}
-      isChecked={false}
+      isChecked={keepMeLoggedIn}
       label="Stay connected"
       labelStyle={{ color: "#3b4761" }}
-      // onClick={this._onPressEmailConfirm}
+      onClick={onPressKeepMeLoggedIn}
     />
-      <Link>Forgot Password ?</Link>
+      <Link onPress={onPressForgotPassword}>Forgot Password ?</Link>
       </View>
       <Button
         onPress={onPressLogin}

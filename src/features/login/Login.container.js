@@ -20,7 +20,8 @@ class Login extends PureComponent {
                     error: null
                 }
             },
-            isLoading: false
+            isLoading: false,
+            keepMeLoggedIn: false
         }
     }
 
@@ -90,9 +91,12 @@ class Login extends PureComponent {
             
           }
     }
-    _onPressRegister = () => {
-        this.props.navigation.navigate("Register")
-    }
+    _onPressRegister = () => this.props.navigation.navigate("Register")
+    
+    _onPressForgotPassword = () => this.props.navigation.navigate("ForgotPassword")
+
+    _onPressKeepMeLoggedIn = () => this.setState((prevState) => ({keepMeLoggedIn: !prevState.keepMeLoggedIn}))
+
 
     render() {
         return (
@@ -103,9 +107,12 @@ class Login extends PureComponent {
                     <ActivityIndicator size="large" color="#26CCB9" />
                 </View> : <LoginScreen
                     fields={this.state.fields}
+                    keepMeLoggedIn={this.state.keepMeLoggedIn}
+                    onPressKeepMeLoggedIn={this._onPressKeepMeLoggedIn}
                     handleOnChange={this._handleOnChange}
                     onPressLogin={this._onPressLogin}
                     onPressRegister={this._onPressRegister}
+                    onPressForgotPassword={this._onPressForgotPassword}
                 />
         )
     }
