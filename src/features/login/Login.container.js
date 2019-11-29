@@ -5,6 +5,8 @@ import {
 import LoginScreen from "./LoginForm"
 import { validator } from "../../utils/validator"
 import firebase from 'react-native-firebase'
+import AsyncStorage from '@react-native-community/async-storage'
+import {notifyError, notifySuccess} from "../../services/NotificationService"
 
 class Login extends PureComponent {
     constructor(props) {
@@ -73,23 +75,40 @@ class Login extends PureComponent {
         return !errors.length
     }
 
+    async storeData(userData){        
+        try {
+          await AsyncStorage.setItem('IsLoggedIn', userData)
+        } catch (e) {
+          // saving error
+        }
+      }
+
 
     _onPressLogin = () => {
         const { fields } = this.state
-
+        if (this._validateForm()) {
         try {
             firebase
                .auth()
                .signInWithEmailAndPassword(fields.email.value, fields.password.value)
                .then(res => {
-                   console.log(res.user.email)
-            }).catch(error =>{console.log(error.message)
-        }
+                   console.log(res.user)
+                   
+                   if(this.state.keepMeLoggedIn){
+                    this.storeData(JSON.stringify(res.user))
+                   }
+                    // AsyncStorage.setItem('IsLoggedIn', res.user)
+                    this.props.navigation.navigate("Home")
+
+            }).catch(error =>{
+                notifyError(error.message)
+            }
             )
         } catch (error) {
-            console.log(error.message)
+            notifyError(error.message)
             
           }
+        }
     }
     _onPressRegister = () => this.props.navigation.navigate("Register")
     

@@ -3,6 +3,7 @@ import ForgotPasswordScreen from './ForgotPassword';
 import style from './ForgotPassword.stylesheet';
 import {validator} from '../../utils/validator';
 import firebase from 'react-native-firebase';
+import {notifyError, notifySuccess} from "../../services/NotificationService"
 
 class Home extends PureComponent {
   constructor(props) {
@@ -62,24 +63,26 @@ class Home extends PureComponent {
       this.setState({fields: newState.fields});
     }
     return !errors.length;
-  };
+  }
+
   _onPressSubmit = () => {
     const {fields} = this.state;
-
+    if (this._validateForm()) {
     try {
       firebase
         .auth()
         .sendPasswordResetEmail(fields.email.value)
         .then(res => {
-          console.log(res);
+          notifySuccess("We have emailed your password reset link")
         })
         .catch(error => {
-          console.log(error.message);
+          notifyError(error.message)
         });
     } catch (error) {
-      console.log(error.message);
+      notifyError(error.message)
     }
-  };
+  }
+}
 
   render() {
     return (

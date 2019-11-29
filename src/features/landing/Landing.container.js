@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react"
 import LandingScreen from "./Landing"
-import SplashScreen from 'react-native-splash-screen'
 
 class Landing extends PureComponent {
     constructor(props) {
@@ -12,7 +11,6 @@ class Landing extends PureComponent {
     }
 
     componentDidMount(){
-        SplashScreen.hide()
     }
     _onPressLogin = () => {
         this.props.navigation.navigate("Login")

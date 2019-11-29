@@ -4,8 +4,8 @@ const style = StyleSheet.create({
     wrapper: {
         backgroundColor: "white",
         justifyContent: "center",
-        paddingHorizontal: 20,
-        flex: 1
+        paddingVertical: 40,
+        paddingHorizontal: 20
     },
     activeBtn: {
         justifyContent: 'center',
@@ -54,6 +54,18 @@ const style = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 15
+    },
+    toggleSwitchLabel: {
+        color: '#3b4761',
+        flex: 1,
+        fontSize: 15,
+        fontFamily: "HelveticaNeue-Medium",
+    },
+    note: {
+        color: "#b1641c",
+        fontSize: 12,
+        marginLeft: 10
+
     }
 })
 

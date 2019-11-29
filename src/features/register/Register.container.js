@@ -3,10 +3,11 @@ import RegisterScreen from "./RegisterForm"
 import { emailSignUp } from "../../actions/registerActions"
 import { validator } from "../../utils/validator"
 import firebase from 'react-native-firebase'
+import {notifyError, notifySuccess} from "../../services/NotificationService"
 class Register extends PureComponent {
     constructor(props) {
         super(props)
-        this.ref = firebase.firestore().collection('users');
+        // this.ref = firebase.firestore().collection('users');
         this.state = {
         isLoading: true,
         fields: {
@@ -17,10 +18,52 @@ class Register extends PureComponent {
             password: {
                 value: "",
                 error: null
+            },
+            phoneNumber: {
+                value: "",
+                error: null
+            },
+            firstName: {
+                value: "",
+                error: null
+            },
+            lastName: {
+                value: "",
+                error: null
+            },
+            address: {
+                value: "",
+                error: null
+            },
+            city: {
+                value: "",
+                error: null
+            },
+            state: {
+                value: "",
+                error: null
+            },
+            zip: {
+                value: "",
+                error: null
+            },
+            dagger: {
+                value: "",
+                error: null
+            },
+            newName: {
+                value: "",
+                error: null
+            },
+            cradleSong: {
+                value: "",
+                error: null
             }
         },
-        userRole: "",
-        category: ""
+        isPrayerRequest: false,
+        isStretchNotification: false,
+        workshopNeeds: false,
+        thought: false
     }
     }
 
@@ -73,21 +116,41 @@ class Register extends PureComponent {
     }
 
     _onPressRegister = () =>{
-        const { fields } = this.state
+        const { fields,  isPrayerRequest, isStretchNotification, workshopNeeds, thought} = this.state
+        if (this._validateForm()) {
         try {
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(fields.email.value, fields.password.value)
-                .then(user => { 
-                       console.log(user)
-                       this.ref.add({
-                        email: fields.email.value
+                .then(response => {
+                        console.log(response.user)
+                        
+                       firebase.firestore().collection('users').doc(response.user.uid).set({
+                        email: fields.email.value,
+                        phoneNumber: fields.phoneNumber.value,
+                        firstName: fields.firstName.value,
+                        lastName: fields.lastName.value ,
+                        address: fields.address.value,
+                        city: fields.city.value,
+                        state: fields.state.value,
+                        zip: fields.zip.value,
+                        dagger: fields.dagger.value,
+                        newName: fields.newName.value,
+                        cradleSong: fields.cradleSong.value,
+                        isPrayerRequest: isPrayerRequest,
+                        isStretchNotification: isStretchNotification,
+                        workshopNeeds: workshopNeeds,
+                        thought: thought
                       })
                        this.props.navigation.navigate("Login")
-                 });} catch (error) {
-            console.log(error.toString(error));
-          }
+                 }).catch(error =>{
+                     notifyError(error.message)
+                 }
+                     )} catch (error) {
+                        notifyError(error.message)
+                    }
     }
+}
 
     _onPressLogin = () =>{
         this.props.navigation.navigate("Login")
@@ -109,19 +172,20 @@ class Register extends PureComponent {
         )    
     }
 
-    _handleOnSelect = (value) =>{
-        console.warn(value);
-        
+    _onPressToggle = (event) => (value) =>{
+        console.log(event)
+        console.log(value)
+
         this.setState(
             {
-                category: value
+                [event]: value
             }
         )    
     }
 
 
     render() {
-                
+     
         return (
             <RegisterScreen 
             fields={this.state.fields}
@@ -130,8 +194,12 @@ class Register extends PureComponent {
             onPressLogin={this._onPressLogin}
             onPressLeftButton={this._onPressLeftButton}
             onPressRightButton={this._onPressRightButton}
-            handleOnSelect={this._handleOnSelect}
-            userRole={this.state.userRole}
+            onPressToggle={this._onPressToggle}
+            isPrayerRequest={this.state.isPrayerRequest}
+            isStretchNotification={this.state.isStretchNotification}
+            workshopNeeds={this.state.workshopNeeds}
+            thought={this.state.thought}
+
             />
         )
     }
