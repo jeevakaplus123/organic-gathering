@@ -50,7 +50,7 @@ const RootStack = createStackNavigator({
         },
     }
 }, {
-    initialRouteName: 'Landing',
+    initialRouteName: 'Auth',
 });
 const NavigationStack = createAppContainer(RootStack)
 export default NavigationStack;

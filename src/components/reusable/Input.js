@@ -26,11 +26,9 @@ class Input extends PureComponent{
 }
 onPressPasswordVisibility = () => this.setState((prevState) => ({passwordVisibility: !prevState.passwordVisibility}))
 
-    render() {
-        console.log(this.state.passwordVisibility);
-        
+    render() {        
         const {
-            value, name,onChange, editable, placeholder, secureTextEntry, keyboardType, label, errorMsg, isInvalid
+            value, name,onChange, editable, maxLength, placeholder, secureTextEntry, keyboardType, label, errorMsg, isInvalid
         } = this.props
         return (
             <View style={style.container}>
@@ -40,6 +38,7 @@ onPressPasswordVisibility = () => this.setState((prevState) => ({passwordVisibil
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
+                        maxLength={maxLength}
                         editable={editable}
                         keyboardType={keyboardType}
                         onChangeText={this.handleOnChange}

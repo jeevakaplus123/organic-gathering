@@ -2,6 +2,7 @@ import Input, { EmailInput, NumberInput, PasswordInput } from "./Input"
 import Button from "./Button"
 import Link from "./Link"
 import Checkbox from "./Checkbox"
+import ToggleSwitch from "./ToggleSwitch"
 
 export {
     Input,
@@ -10,6 +11,7 @@ export {
     PasswordInput,
     Button,
     Link,
-    Checkbox
+    Checkbox,
+    ToggleSwitch
 }
     

@@ -11,7 +11,8 @@ const style = StyleSheet.create({
     },
     input: {
         color: '#3b4761',
-        fontSize: 18,
+        flex:1,
+        fontSize: 15,
         fontFamily: "HelveticaNeue-Medium",
         height: platformSwitcher({ios :30,android: 45})
     },
