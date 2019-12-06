@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {Text, View} from 'react-native';
-import {Button, EmailInput} from '../../components/reusable';
+import React, { Component } from 'react';
+import { Text, View } from 'react-native';
+import { Button, EmailInput } from '../../components/reusable';
 import style from './ForgotPassword.stylesheet';
 
-const ForgotPassword = ({fields, handleOnChange, onPressSubmit}) => (
+const ForgotPassword = ({ fields, handleOnChange, onPressSubmit }) => (
   <View style={style.wrapper}>
     <View style={style.container}>
       <Text style={style.title}>Forgot Password</Text>

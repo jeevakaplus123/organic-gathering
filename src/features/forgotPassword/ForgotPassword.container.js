@@ -1,9 +1,9 @@
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import ForgotPasswordScreen from './ForgotPassword';
 import style from './ForgotPassword.stylesheet';
-import {validator} from '../../utils/validator';
+import { validator } from '../../utils/validator';
 import firebase from 'react-native-firebase';
-import {notifyError, notifySuccess} from "../../services/NotificationService"
+import { notifyError, notifySuccess } from "../../services/NotificationService"
 
 class Home extends PureComponent {
   constructor(props) {
@@ -21,7 +21,7 @@ class Home extends PureComponent {
 
   _handleOnChange = (value, name) => {
     const error = validator(name, value);
-    const {fields} = this.state;
+    const { fields } = this.state;
     const errorList = Object.keys(fields)
       .filter(fieldName => Boolean(fieldName !== name))
       .map(fieldName => validator(fieldName, fields[fieldName].value))
@@ -41,7 +41,7 @@ class Home extends PureComponent {
   };
 
   _validateForm = () => {
-    const {fields} = this.state;
+    const { fields } = this.state;
     let newState = Object.create({});
     const errors = Object.keys(fields)
       .map(fieldName => {
@@ -60,29 +60,29 @@ class Home extends PureComponent {
       })
       .filter(error => Boolean(error));
     if (errors.length) {
-      this.setState({fields: newState.fields});
+      this.setState({ fields: newState.fields });
     }
     return !errors.length;
   }
 
   _onPressSubmit = () => {
-    const {fields} = this.state;
+    const { fields } = this.state;
     if (this._validateForm()) {
-    try {
-      firebase
-        .auth()
-        .sendPasswordResetEmail(fields.email.value)
-        .then(res => {
-          notifySuccess("We have emailed your password reset link")
-        })
-        .catch(error => {
-          notifyError(error.message)
-        });
-    } catch (error) {
-      notifyError(error.message)
+      try {
+        firebase
+          .auth()
+          .sendPasswordResetEmail(fields.email.value)
+          .then(res => {
+            notifySuccess("We have emailed your password reset link")
+          })
+          .catch(error => {
+            notifyError(error.message)
+          });
+      } catch (error) {
+        notifyError(error.message)
+      }
     }
   }
-}
 
   render() {
     return (
