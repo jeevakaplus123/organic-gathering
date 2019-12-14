@@ -7,6 +7,7 @@ import Home from './features/home/Home.container'
 import Register from './features/register/Register.container'
 import Login from './features/login/Login.container'
 import Landing from './features/landing/Landing.container'
+import Settings from './features/settings/Settings.container'
 import ForgotPassword from './features/forgotPassword/ForgotPassword.container'
 
 const RootStack = createStackNavigator({
@@ -48,6 +49,15 @@ const RootStack = createStackNavigator({
         navigationOptions: {
             header: null,
         },
+    },
+    Settings: {
+        screen: Settings,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#3b4761"
+        },
+        headerTintColor: "#ffffff"
+        }
     }
 }, {
     initialRouteName: 'Auth',

@@ -3,6 +3,7 @@ import Button from "./Button"
 import Link from "./Link"
 import Checkbox from "./Checkbox"
 import ToggleSwitch from "./ToggleSwitch"
+import Loader from "./Loader"
 
 export {
     Input,
@@ -12,6 +13,7 @@ export {
     Button,
     Link,
     Checkbox,
-    ToggleSwitch
+    ToggleSwitch,
+    Loader
 }
     

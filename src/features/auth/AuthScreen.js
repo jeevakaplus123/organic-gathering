@@ -1,8 +1,11 @@
-import React, {PureComponent} from 'react';
-import {ActivityIndicator, View, StyleSheet} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import SplashScreen from 'react-native-splash-screen';
-import firebase from 'react-native-firebase';
+import React, {PureComponent} from 'react'
+import { connect } from 'react-redux'
+import {ActivityIndicator, View, StyleSheet} from 'react-native'
+import {readData} from '../../utils/asyncStorage'
+import { setAuthData } from '../../actions/userActions'
+import AsyncStorage from '@react-native-community/async-storage'
+import SplashScreen from 'react-native-splash-screen'
+import firebase from 'react-native-firebase'
 class AuthScreen extends PureComponent {
   constructor(props) {
     super(props);
@@ -14,19 +17,8 @@ class AuthScreen extends PureComponent {
       } else {
         this.requestPermission();
       }
-    } catch (error) {}
+    } catch (error) { }
     // firebase.messaging().subscribeToTopic('aaa');
-  }
-
-  async checkedLoggedUser() {
-    const value = await AsyncStorage.getItem('IsLoggedIn');
-    if (value !== null) {
-      this.props.navigation.navigate('Home');
-      SplashScreen.hide();
-    } else {
-      this.props.navigation.navigate('Landing');
-      SplashScreen.hide();
-    }
   }
 
   async checkPermission() {
@@ -55,6 +47,22 @@ class AuthScreen extends PureComponent {
       });
   }
 
+  async checkedLoggedUser() {
+    const value = await readData('STORAGE_KEY')
+    if (value !== null) {
+      this.props.authDataToState(value)
+      this._navigate('Home');
+    } else {
+      this._navigate('Landing');
+    }
+  }
+
+  _navigate(path) {
+    const { navigation } = this.props
+    navigation.navigate(path)
+    SplashScreen.hide()
+  }
+
   render() {
     return (
       <View style={[styles.container, styles.horizontal]}>
@@ -74,4 +82,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-export default AuthScreen;
+const mapStateToProps = () => ({})
+const mapDispatchToProps = (dispatch) => ({
+    authDataToState: (data) => dispatch(setAuthData(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen)

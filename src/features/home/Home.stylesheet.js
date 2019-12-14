@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native"
 const style = StyleSheet.create({
     wrapper: {
         backgroundColor: "white",
-        flex: 1
+        flexGrow: 1
     },
     container: {
         justifyContent: 'center',
@@ -15,9 +15,20 @@ const style = StyleSheet.create({
         color: "#DC143C",
         textAlign: "center",
         marginVertical: 25,
-        paddingLeft: 10,
         fontSize: 20,
         fontFamily: "HelveticaNeue-Light"
+    },
+    imageStyle: {
+        width: 148, height: 135,
+        marginBottom: 25,
+        alignSelf: "center"
+    },
+    button: {
+        marginTop: 15
+    },
+    sign_outButton: {
+        marginBottom: 25,
+        marginHorizontal: 20
     }
 })
 
