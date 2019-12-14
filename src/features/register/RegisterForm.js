@@ -166,7 +166,7 @@ const RegisterForm = ({
   isOn={thought}
   onColor="#3b4761"
   offColor="#49EACA"
-  label="miscellaneous"
+  label="Miscellaneous"
   labelStyle={style.toggleSwitchLabel}
   size="medium"
   // onToggle={isOn => console.log("changed to : ", isOn)}
