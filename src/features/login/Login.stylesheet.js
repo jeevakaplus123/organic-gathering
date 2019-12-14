@@ -4,7 +4,8 @@ const style = StyleSheet.create({
     wrapper: {
         backgroundColor: "white",
         paddingHorizontal: 20,
-        flex: 1,
+        paddingVertical: 20,
+        flexGrow: 1,
         justifyContent: "center",
     },
     row: {

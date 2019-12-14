@@ -3,6 +3,7 @@ import RegisterScreen from "./RegisterForm"
 import { emailSignUp } from "../../actions/registerActions"
 import { validator } from "../../utils/validator"
 import firebase from 'react-native-firebase'
+import AsyncStorage from '@react-native-community/async-storage'
 import {notifyError, notifySuccess} from "../../services/NotificationService"
 class Register extends PureComponent {
     constructor(props) {
@@ -60,12 +61,32 @@ class Register extends PureComponent {
                 error: null
             }
         },
-        isPrayerRequest: false,
-        isStretchNotification: false,
+        prayerRequest: false,
+        stretchNotification: false,
         workshopNeeds: false,
-        thought: false
+        thought: false,
+        fcmToken: ""
     }
     }
+
+    async componentDidMount() {
+        this.getToken()
+      }
+
+      async getToken() {
+        let fcmToken = await AsyncStorage.getItem('fcmToken')
+        console.log("before fcmToken: ", fcmToken)
+        if (!fcmToken) {
+          fcmToken = await firebase.messaging().getToken()
+          if (fcmToken) {
+            console.log("after fcmToken: ", fcmToken)
+            await AsyncStorage.setItem('fcmToken', fcmToken)
+          }
+        }
+        this.setState({
+            fcmToken: fcmToken
+        })
+      }
 
     _handleOnChange =(value, name) => {
         const error = validator(name, value)
@@ -116,14 +137,13 @@ class Register extends PureComponent {
     }
 
     _onPressRegister = () =>{
-        const { fields,  isPrayerRequest, isStretchNotification, workshopNeeds, thought} = this.state
+        const { fields,  prayerRequest, stretchNotification, workshopNeeds, thought, fcmToken} = this.state
         if (this._validateForm()) {
         try {
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(fields.email.value, fields.password.value)
                 .then(response => {
-                        console.log(response.user)
                         
                        firebase.firestore().collection('users').doc(response.user.uid).set({
                         email: fields.email.value,
@@ -137,10 +157,11 @@ class Register extends PureComponent {
                         dagger: fields.dagger.value,
                         newName: fields.newName.value,
                         cradleSong: fields.cradleSong.value,
-                        isPrayerRequest: isPrayerRequest,
-                        isStretchNotification: isStretchNotification,
+                        prayerRequest: prayerRequest,
+                        stretchNotification: stretchNotification,
                         workshopNeeds: workshopNeeds,
-                        thought: thought
+                        thought: thought,
+                        fcmToken: fcmToken
                       })
                        this.props.navigation.navigate("Login")
                  }).catch(error =>{
@@ -156,25 +177,7 @@ class Register extends PureComponent {
         this.props.navigation.navigate("Login")
     }
 
-    _onPressLeftButton = () =>{
-        this.setState(
-            {
-                userRole: "coach"
-            }
-        )
-    }
-    
-    _onPressRightButton = () =>{
-        this.setState(
-            {
-                userRole: "user"
-            }
-        )    
-    }
-
     _onPressToggle = (event) => (value) =>{
-        console.log(event)
-        console.log(value)
 
         this.setState(
             {
@@ -195,8 +198,8 @@ class Register extends PureComponent {
             onPressLeftButton={this._onPressLeftButton}
             onPressRightButton={this._onPressRightButton}
             onPressToggle={this._onPressToggle}
-            isPrayerRequest={this.state.isPrayerRequest}
-            isStretchNotification={this.state.isStretchNotification}
+            prayerRequest={this.state.prayerRequest}
+            stretchNotification={this.state.stretchNotification}
             workshopNeeds={this.state.workshopNeeds}
             thought={this.state.thought}
 

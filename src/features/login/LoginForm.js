@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, KeyboardAvoidingView, ScrollView } from "react-native"
-import { EmailInput, Button, PasswordInput, Link, Checkbox } from "../../components/reusable"
+import { EmailInput, Button, PasswordInput, Link, Checkbox, Loader } from "../../components/reusable"
 import style from "./Login.stylesheet"
 
-const LoginForm = ({ onPressLogin, onPressRegister,onPressForgotPassword, handleOnChange, fields, keepMeLoggedIn, onPressKeepMeLoggedIn }) =>
+const LoginForm = ({ onPressLogin, onPressRegister,onPressForgotPassword, handleOnChange, fields, keepMeLoggedIn, onPressKeepMeLoggedIn, isLoading }) =>
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
       <Text style={style.title}>Sign In</Text>
       <EmailInput

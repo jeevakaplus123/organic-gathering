@@ -14,8 +14,8 @@ const RegisterForm = ({
   onPressToggle,
   fields,
   thought,
-  isPrayerRequest,
-  isStretchNotification,
+  prayerRequest,
+  stretchNotification,
   workshopNeeds
 }) => (
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
@@ -130,25 +130,25 @@ const RegisterForm = ({
       value={fields.cradleSong.value}
     />
     <ToggleSwitch
-  isOn={isPrayerRequest}
+  isOn={prayerRequest}
   onColor="#3b4761"
   offColor="#49EACA"
   label="Prayer request during workshops"
   labelStyle={style.toggleSwitchLabel}
   size="medium"
   // onToggle={isOn => console.log("changed to : ", isOn)}
-  onToggle={onPressToggle("isPrayerRequest")}
+  onToggle={onPressToggle("prayerRequest")}
 
 />
 <ToggleSwitch
-  isOn={isStretchNotification}
+  isOn={stretchNotification}
   onColor="#3b4761"
   offColor="#49EACA"
   label="Notification of STRETCH and Sunday morning"
   labelStyle={style.toggleSwitchLabel}
   size="medium"
   // onToggle={isOn => console.log("changed to : ", isOn)}
-  onToggle={onPressToggle("isStretchNotification")}
+  onToggle={onPressToggle("stretchNotification")}
 
 />
 <ToggleSwitch
@@ -166,7 +166,7 @@ const RegisterForm = ({
   isOn={thought}
   onColor="#3b4761"
   offColor="#49EACA"
-  label="Thought of the day, etc"
+  label="miscellaneous"
   labelStyle={style.toggleSwitchLabel}
   size="medium"
   // onToggle={isOn => console.log("changed to : ", isOn)}

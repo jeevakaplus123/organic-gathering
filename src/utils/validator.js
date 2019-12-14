@@ -17,7 +17,7 @@ const rules = {
             message: "^A password is required"
         },
         length: {
-            minimum: 5,
+            minimum: 6,
             message: "^Password must be at least 5 characters"
         }
     }
