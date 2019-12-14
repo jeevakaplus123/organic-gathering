@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import Routes from './src/routes'
-import { firebaseConfig } from './src/utils/config'
+import NavigationService from './src/services/NavigationService'
 import ConfigureStore from "./src/reducers/store"
 import { Provider } from "react-redux"
 import * as firebase from 'firebase'
@@ -14,7 +14,11 @@ const { store } = ConfigureStore()
 export default function App() {
   return (
     <Provider store={store}>
-        <Routes />
+        <Routes
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef)
+      }}
+        />
     </Provider>
   )
 }
