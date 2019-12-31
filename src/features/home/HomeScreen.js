@@ -4,7 +4,7 @@ import { Button } from "../../components/reusable"
 import style from "./Home.stylesheet"
 import {NavigationEvents} from 'react-navigation'
 
-  const Home = ({onPressLogout, onPressSettings, onDidFocus }) =>
+  const Home = ({onPressLogout, onPressSettings, onDidFocus, onPressConnect, onPressGrow, onPressShopDonate}) =>
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
   
       <View style={style.container} >
@@ -12,9 +12,9 @@ import {NavigationEvents} from 'react-navigation'
           style={style.imageStyle}
           source={require('../../images/organic_gathering.png')}
         />
-        <Button buttonStyle={style.button} isPrimary onPress={()=>console.log("connect")}>Connect</Button>
-        <Button buttonStyle={style.button} isPrimary onPress={()=>console.log("grow")}>Grow</Button>
-        <Button buttonStyle={style.button} isPrimary onPress={()=>console.log("shop/donate")}>Shop/Donate</Button>
+        <Button buttonStyle={style.button} isPrimary onPress={onPressConnect}>Connect</Button>
+        <Button buttonStyle={style.button} isPrimary onPress={onPressGrow}>Grow</Button>
+        <Button buttonStyle={style.button} isPrimary onPress={onPressShopDonate}>Shop/Donate</Button>
         <Button buttonStyle={style.button} isPrimary onPress={onPressSettings}>Settings</Button>
         <NavigationEvents onDidFocus={onDidFocus} />
       </View>

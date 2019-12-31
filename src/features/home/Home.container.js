@@ -121,11 +121,21 @@ class Home extends PureComponent {
     }
 
      _onDidFocus = async() => {
-        console.log("lll")
-        
         try {
             this.ref.onSnapshot(this.onCollectionUpdate)
         } catch (error) { }
+    }
+
+    _onPressConnect = () => {        
+        this.props.navigation.navigate("Connect")
+    }
+
+    _onPressGrow = () => {        
+        this.props.navigation.navigate("Grow")
+    }
+
+    _onPressShopDonate = () => {        
+        this.props.navigation.navigate("ShopDonate")
     }
 
     render() {
@@ -139,6 +149,9 @@ class Home extends PureComponent {
                 onPressLogout={this._onPressLogout}
                 onPressSettings={this._onPressSettings}
                 onDidFocus={this._onDidFocus}
+                onPressConnect={this._onPressConnect}
+                onPressGrow={this._onPressGrow}
+                onPressShopDonate={this._onPressShopDonate}
                  />
         )
     }
