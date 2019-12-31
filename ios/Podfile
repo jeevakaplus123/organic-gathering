@@ -36,6 +36,8 @@ target 'organic' do
 
 
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
   target 'organicTests' do
     inherit! :search_paths
     # Pods for testing
