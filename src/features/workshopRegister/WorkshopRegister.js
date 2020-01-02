@@ -30,7 +30,7 @@ class WorkshopRegister extends PureComponent {
         <View
         style={this.state.visible === true ? style.stylOld : style.styleNew}>
         {this.state.visible ? (
-          <Loader loading={this.state.visible}/>
+          <Loader />
         ) : null}
         <WebView 
             source={{uri: url }}

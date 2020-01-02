@@ -13,13 +13,13 @@ import style from "./ShopDonate.stylesheet"
         />
     </View>
     <Button
-        onPress={onPressSquareupStore}
+        onPress={onPressSquareupStore("expressitpromos")}
         isPrimary
         buttonStyle={style.button}
       >HeartChange Shirts/SweatShirts</Button>
       <Button
         isPrimary
-        onPress={onPressSquareupStore}
+        onPress={onPressSquareupStore("squareupstore")}
         buttonStyle={style.button}
         textStyle={{textAlign: "center"}}
       >Donate to support people, regions, or general fund</Button>

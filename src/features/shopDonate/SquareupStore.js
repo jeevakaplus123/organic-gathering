@@ -24,16 +24,16 @@ class SquareupStore extends PureComponent {
         this.setState({ visible: false })
       }
     render() {
-        console.log(this.state.visible)
-        
+        const { navigation } = this.props
+        const redirectTo = navigation.state.params.redirectTo
         return (
         <View
         style={this.state.visible === true ? style.stylOld : style.styleNew}>
         {this.state.visible ? (
-          <Loader loading={this.state.visible}/>
+          <Loader />
         ) : null}
         <WebView 
-            source={{uri: "https://squareup.com/store/organicgathering"}}
+            source={{uri: redirectTo === "squareupstore" ? "https://squareup.com/store/organicgathering" : "https://squareup.com/store/expressitpromos"}}
             javaScriptEnabled={true}
             domStorageEnabled={true}
             onLoadStart={() => this.showSpinner()}

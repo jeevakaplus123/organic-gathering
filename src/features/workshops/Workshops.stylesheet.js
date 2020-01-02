@@ -80,7 +80,7 @@ const style = StyleSheet.create({
     },
     modal: {
         width: Dimensions.get('window').width * 0.9,
-        height: Dimensions.get('window').height * 0.4,
+        height: Dimensions.get('window').height * 0.55,
         backgroundColor: "white",
         borderRadius: 5
     },
@@ -89,7 +89,49 @@ const style = StyleSheet.create({
         padding: 5
     },
     form: {
-        marginHorizontal: 15
+        marginHorizontal: 15,
+        flex: 1,
+        justifyContent:"center",
+    },
+    activeBtn: {
+        justifyContent: 'center',
+        alignItems: "center",
+        backgroundColor: "#3b4761",
+        borderColor: "#DC143C",
+        flex: 1
+    },
+    inactiveBtn: {
+        justifyContent: 'center',
+        alignItems: "center",
+        backgroundColor: "#49EACA",
+        borderColor: "#DC143C",
+        flex: 1
+    },
+    btnContainer: {
+        height: 50,
+        flexDirection: "row",
+          marginHorizontal: 10,
+          shadowOpacity: 0.8,
+          elevation: 2,
+          shadowColor: "rgba(0,0,0,0.2)",
+          shadowOffset: { width: 0, height: 5 },
+          shadowOpacity: 0.6,
+          marginTop: 5
+    },
+    activeText: {
+        color: "white"
+    },
+    inactiveText: {
+        color: "#3b4761"
+    },
+    contactText: {
+        fontSize: 12,
+        paddingVertical: 2,
+        textAlign: "center",
+        color: '#3b4761',
+        textDecorationLine: "underline",
+
+        fontFamily: "HelveticaNeue"
     }
 })
 

@@ -7,4 +7,4 @@ const get = (path, token = false) => {
     return fetch(url).then(checkStatusAndGetJSON)
 }
 
-export const getWorkshopList = (token) => get(`/users/me/owned_events?token=${token}`)
+export const getWorkshopList = (token) => get(`/users/me/owned_events?token=${token}&order_by=start_asc&status=live,started`)

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Loader } from '../../components/reusable'
 import { emailSignIn } from '../../actions/loginActions'
 import LoginScreen from './LoginForm'
 import { validator } from '../../utils/validator'

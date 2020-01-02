@@ -13,8 +13,9 @@ class ShopDonate extends PureComponent {
     componentDidMount(){
     }
 
-    _onPressSquareupStore = () => {
-        this.props.navigation.navigate("SquareupStore")
+    _onPressSquareupStore = (redirectTo) => () => {
+        
+        this.props.navigation.navigate("SquareupStore", { redirectTo: redirectTo})
     }
     render() {
         return (

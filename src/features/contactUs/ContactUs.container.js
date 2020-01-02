@@ -25,7 +25,7 @@ class ContactUs extends PureComponent {
 
     _emailSend = () => {
           sendEmail(
-            'organic_gathering@gmail.com',
+            'info@OrganicGathering.Org',
         ).then(() => {
             console.log('Our email successful provided to device mail ')
         })    

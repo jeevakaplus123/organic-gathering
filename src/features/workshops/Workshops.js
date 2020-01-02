@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react"
-import { Modal, View, TouchableOpacity, TouchableHighlight, Alert, Image, Text, FlatList } from "react-native"
-import { Loader, Button, EmailInput } from "../../components/reusable"
+import { Modal, View, TouchableOpacity, TouchableHighlight, Alert, Image, Text, FlatList, Dimensions } from "react-native"
+import { Loader, Button, EmailInput, NumberInput, Link } from "../../components/reusable"
 import style from "./Workshops.stylesheet"
 import moment from 'moment'
 import FaIconPro from "react-native-vector-icons/FontAwesome5"
@@ -16,7 +16,12 @@ class Workshops extends PureComponent {
         value: "",
         error: null
       },
-      registerUrl : "",
+      friendPhoneNumber: {
+        value: "",
+        error: null
+      },
+      registerUrl: "",
+      userRole: "Message"
     }
   }
 
@@ -25,45 +30,118 @@ class Workshops extends PureComponent {
   }
 
   handleOnChange = (value, name) => {
-    const error = validator(name, value)
+    // if(name === "email") {
+    console.log(value);
+    if (name === "email") {
+      const errorEmail = validator(name, value)
 
+      this.setState({
+        friendEmail: {
+          value: value,
+          error: errorEmail
+        }
+      })
+      return errorEmail
+
+    }
+    else {
+
+      const errorNumber = validator(name, value)
+
+      this.setState({
+        friendPhoneNumber: {
+          value: value,
+          error: errorNumber
+        }
+      })
+      return errorNumber
+    }
+
+  }
+  onPressTab = (tabItem) => () => {
     this.setState({
-      friendEmail: {
-        value: value,
-        error: error
-      }
+      userRole: tabItem
     })
-    return error
+
   }
 
   validateForm = () => {
-    const { friendEmail } = this.state
-    const error = validator("email", friendEmail.value)
-    console.log(error)
-    this.setState({
-      friendEmail: {
-        value: friendEmail.value,
-        error: error
-      }
-    })
-    return error === null
+    const { friendEmail, friendPhoneNumber } = this.state
+    if ("email") {
+      const errorEmail = validator("email", friendEmail.value)
+      this.setState({
+        friendEmail: {
+          value: friendEmail.value,
+          error: errorEmail
+        }
+      })
+      return errorEmail === null
+    }
+    else {
+      const errorNumber = validator("phone", friendPhoneNumber.value)
+      this.setState({
+        friendPhoneNumber: {
+          value: friendPhoneNumber.value,
+          error: errorNumber
+        }
+      })
+      return errorNumber === null
+    }
+
   }
 
   emailSend = () => {
-    if(this.validateForm()){
+    if (this.validateForm()) {
       sendEmail(
         this.state.friendEmail.value,
         'Register',
         this.state.registerUrl
-    ).then(() => {
+      ).then(() => {
         console.log('Our email successful provided to device mail ')
-    })
+      })
     }
   }
 
   render() {
     const { data, isLoading } = this.props
-    const { friendEmail } = this.state
+    const { friendEmail, friendPhoneNumber } = this.state
+    const FirstRoute = () => (
+      <View style={style.form}>
+        <NumberInput
+          errorMsg={friendPhoneNumber.error}
+          isInvalid={Boolean(friendPhoneNumber.error)}
+          label="Phone Number"
+          placeholder="Enter your friend's phone number"
+          name="phone"
+          onChange={this.handleOnChange}
+          value={friendPhoneNumber.value} />
+        <Link style={style.contactText}>Pick up from contacts</Link>
+
+        <Button
+          onPress={this.emailSend}
+          isPrimary
+          buttonStyle={style.PopupButton}
+        >Send</Button>
+      </View>)
+
+    const SecondRoute = () => (
+      <View style={style.form}>
+        <EmailInput
+          errorMsg={friendEmail.error}
+          isInvalid={Boolean(friendEmail.error)}
+          label="Email"
+          placeholder="Enter your friend's Email"
+          name="email"
+          onChange={this.handleOnChange}
+          value={friendEmail.value} />
+        <Button
+          onPress={this.emailSend}
+          isPrimary
+          buttonStyle={style.PopupButton}
+        >Send</Button>
+      </View>)
+    const { userRole } = this.state
+
     return (
       <View style={style.wrapper}>
         {!isLoading ?
@@ -110,7 +188,7 @@ class Workshops extends PureComponent {
               )
             }
           />
-          : <Loader loading={isLoading} />
+          : <Loader />
         }
         <Modal
           animationType="fade"
@@ -132,21 +210,33 @@ class Workshops extends PureComponent {
                   <FaIconPro color="#3b4761" name="times-circle" size={22} />
                 </TouchableHighlight>
               </View>
-              <View style={style.form}>
-                <EmailInput
-                  errorMsg={friendEmail.error}
-                  isInvalid={Boolean(friendEmail.error)}
-                  label="Email"
-                  placeholder="Enter your friend's Email"
-                  name="email"
-                  onChange={this.handleOnChange}
-                  value={friendEmail.value} />
-                <Button
-                  onPress={this.emailSend}
-                  isPrimary
-                  buttonStyle={style.PopupButton}
-                >Send</Button>
+
+              <View style={style.btnContainer}>
+                <TouchableOpacity
+                  style={[{ borderTopLeftRadius: 5 }, userRole === "Message" ? style.activeBtn : style.inactiveBtn]}
+                  onPress={this.onPressTab("Message")}
+                >
+                  <Text
+                    style={userRole === "Message" ? style.activeText : style.inactiveText}
+                  >
+                    Message</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[{ borderTopRightRadius: 5 }, userRole === "Email" ? style.activeBtn : style.inactiveBtn]}
+                  onPress={this.onPressTab("Email")}
+                >
+                  <Text
+                    style={userRole === "Email" ? style.activeText : style.inactiveText}
+
+                  >Email</Text>
+                </TouchableOpacity>
               </View>
+              {userRole === "Message" ?
+                FirstRoute()
+                : null}
+              {userRole === "Email" ?
+                SecondRoute()
+                : null}
             </View>
           </View>
         </Modal>

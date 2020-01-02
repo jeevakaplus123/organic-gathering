@@ -17,7 +17,7 @@ const ContactUs = ({ onPressWorkshop, emailSend, phoneCall }) =>
     <View style={style.separator} />
     <TouchableOpacity style={style.container} onPress={emailSend}>
       <FaIconPro color="#3b4761" name="envelope" size={20} />
-      <Text style={style.label}>organic_gathering@gmail.com</Text>
+      <Text style={style.label}>info@OrganicGathering.Org</Text>
     </TouchableOpacity>
     <View style={style.container} >
       <FaIconPro color="#3b4761" name="location-arrow" size={25} />

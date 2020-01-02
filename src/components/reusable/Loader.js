@@ -4,7 +4,6 @@ import style from "./Loader.stylesheet"
 import PropTypes from "prop-types"
 
 const Loader = ({
-  loading = false,
   color,
   size,
   opacity = 0.4,
@@ -14,7 +13,7 @@ const Loader = ({
     <Modal
       transparent
       animationType={"none"}
-      visible={loading}
+      visible={true}
       onRequestClose={() => null}
     >
       <View
@@ -24,7 +23,7 @@ const Loader = ({
         ]}
       >
         <View style={style.activityIndicatorWrapper}>
-          <ActivityIndicator animating={loading} color={color} size={size} />
+          <ActivityIndicator animating={true} color={color} size={size} />
           <Text style={style.title} numberOfLines={1}>
             {title}
           </Text>
@@ -35,7 +34,6 @@ const Loader = ({
 }
 
 Loader.propTypes = {
-  loading: PropTypes.bool.isRequired,
   color: PropTypes.string,
   size: PropTypes.string,
   opacity: (props, propName, componentName) => {
