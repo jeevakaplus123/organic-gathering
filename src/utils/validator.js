@@ -20,6 +20,12 @@ const rules = {
             minimum: 6,
             message: "^Password must be at least 5 characters"
         }
+    },
+    phone: {
+        presence: {
+            allowEmpty: false,
+            message: "^A phone number is required"
+        }
     }
 }
 export const validator = (fieldName, value) => {

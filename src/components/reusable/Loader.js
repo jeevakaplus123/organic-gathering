@@ -23,7 +23,7 @@ const Loader = ({
         ]}
       >
         <View style={style.activityIndicatorWrapper}>
-          <ActivityIndicator animating={true} color={color} size={size} />
+          <ActivityIndicator color={color} size={size} />
           <Text style={style.title} numberOfLines={1}>
             {title}
           </Text>

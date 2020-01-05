@@ -1,11 +1,14 @@
 import React, { PureComponent } from "react"
-import { Modal, View, TouchableOpacity, TouchableHighlight, Alert, Image, Text, FlatList, Dimensions } from "react-native"
+import { Modal, View, TouchableOpacity, TouchableHighlight, Alert, Image, Text, FlatList, PermissionsAndroid } from "react-native"
 import { Loader, Button, EmailInput, NumberInput, Link } from "../../components/reusable"
 import style from "./Workshops.stylesheet"
 import moment from 'moment'
 import FaIconPro from "react-native-vector-icons/FontAwesome5"
 import { validator } from '../../utils/validator'
 import { sendEmail } from "../../services/EmailService"
+import { sendMessage } from "../../services/MessageService"
+import { selectContactPhone } from 'react-native-select-contact'
+
 class Workshops extends PureComponent {
   constructor() {
     super()
@@ -65,9 +68,8 @@ class Workshops extends PureComponent {
 
   }
 
-  validateForm = () => {
-    const { friendEmail, friendPhoneNumber } = this.state
-    if ("email") {
+  validateEmail = () => {
+    const { friendEmail } = this.state
       const errorEmail = validator("email", friendEmail.value)
       this.setState({
         friendEmail: {
@@ -76,8 +78,11 @@ class Workshops extends PureComponent {
         }
       })
       return errorEmail === null
-    }
-    else {
+  }
+
+  validateNumber = () => {
+    const { friendPhoneNumber } = this.state
+    
       const errorNumber = validator("phone", friendPhoneNumber.value)
       this.setState({
         friendPhoneNumber: {
@@ -86,12 +91,10 @@ class Workshops extends PureComponent {
         }
       })
       return errorNumber === null
-    }
-
   }
 
   emailSend = () => {
-    if (this.validateForm()) {
+    if (this.validateEmail()) {
       sendEmail(
         this.state.friendEmail.value,
         'Register',
@@ -101,6 +104,55 @@ class Workshops extends PureComponent {
       })
     }
   }
+
+  messageSend = () => {
+
+    PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_SMS,
+      {
+        'title': 'Contacts',
+        'message': 'This app would like to view your contacts.'
+      }
+    ).then(() => {
+      if (this.validateNumber()) {
+      
+        sendMessage(
+          [this.state.friendPhoneNumber.value],
+          this.state.registerUrl
+        )
+      }})
+  }
+
+  getPhoneNumber = () => {
+    return selectContactPhone()
+        .then(selection => {
+            if (!selection) {
+                return null;
+            }
+            
+            let { contact, selectedPhone } = selection;
+            console.log(selection);
+            const errorNumber = validator("phone", selectedPhone.number)
+            this.setState({
+              friendPhoneNumber: {
+                value: selectedPhone.number,
+                error: errorNumber
+              }
+            })
+            console.log(`Selected ${selectedPhone.type} phone number ${selectedPhone.number} from ${contact.name}`);
+            return selectedPhone.number;
+        });  
+  }
+  requestPermission = () =>
+    PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
+      {
+        'title': 'SMS',
+        'message': 'This app would like to view your messages.'
+      }
+    ).then(() => {
+      this.getPhoneNumber()
+    })
 
   render() {
     const { data, isLoading } = this.props
@@ -115,10 +167,10 @@ class Workshops extends PureComponent {
           name="phone"
           onChange={this.handleOnChange}
           value={friendPhoneNumber.value} />
-        <Link style={style.contactText}>Pick up from contacts</Link>
+        <Link style={style.contactText} onPress={this.requestPermission}>Pick up from contacts</Link>
 
         <Button
-          onPress={this.emailSend}
+          onPress={this.messageSend}
           isPrimary
           buttonStyle={style.PopupButton}
         >Send</Button>
@@ -195,7 +247,7 @@ class Workshops extends PureComponent {
           transparent={true}
           visible={this.state.modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
+            this.setModalVisible(!this.state.modalVisible)
           }}>
           <View style={style.modalContainer}>
             <View style={style.modal}>
