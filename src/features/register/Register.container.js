@@ -32,22 +32,6 @@ class Register extends PureComponent {
                 value: "",
                 error: null
             },
-            address: {
-                value: "",
-                error: null
-            },
-            city: {
-                value: "",
-                error: null
-            },
-            state: {
-                value: "",
-                error: null
-            },
-            zip: {
-                value: "",
-                error: null
-            },
             dagger: {
                 value: "",
                 error: null
@@ -61,10 +45,10 @@ class Register extends PureComponent {
                 error: null
             }
         },
-        prayerRequest: false,
-        stretchNotification: false,
-        workshopNeeds: false,
-        thought: false,
+        prayerRequest: true,
+        stretchNotification: true,
+        workshopNeeds: true,
+        thought: true,
         fcmToken: ""
     }
     }
@@ -150,10 +134,6 @@ class Register extends PureComponent {
                         phoneNumber: fields.phoneNumber.value,
                         firstName: fields.firstName.value,
                         lastName: fields.lastName.value ,
-                        address: fields.address.value,
-                        city: fields.city.value,
-                        state: fields.state.value,
-                        zip: fields.zip.value,
                         dagger: fields.dagger.value,
                         newName: fields.newName.value,
                         cradleSong: fields.cradleSong.value,

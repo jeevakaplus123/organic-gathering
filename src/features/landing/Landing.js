@@ -20,6 +20,6 @@ import style from "./Landing.stylesheet"
       <Button
         onPress={onPressRegister}
         buttonStyle={style.button}
-      >SIGN UP</Button>
+      >REGISTER</Button>
   </View> 
   export default Landing

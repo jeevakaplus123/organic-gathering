@@ -42,7 +42,7 @@ const LoginForm = ({ onPressLogin, onPressRegister,onPressForgotPassword, handle
       <Button
         onPress={onPressRegister}
         buttonStyle={style.button}
-      >SIGN UP</Button>
+      >REGISTER</Button>
   </ScrollView>
 
 export default LoginForm

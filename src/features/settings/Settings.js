@@ -6,12 +6,12 @@ import style from "./Settings.stylesheet"
 const SettingsPage = ({ onPressSubmit, onPressToggle, prayerRequest, stretchNotification, workshopNeeds, thought }) => (
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
     <View style={style.container}>
-      <Text style={style.title}>Settings</Text>
+      <Text style={style.title}>Notifications</Text>
       <Text style={style.statement}>To enable or disable receiving notifications, select from the categories below</Text>
 
       <ToggleSwitch
         isOn={prayerRequest}
-        onColor="#3b4761"
+        onColor="#00C301"
         offColor="#49EACA"
         label="Prayer request during workshops"
         labelStyle={style.toggleSwitchLabel}
@@ -21,7 +21,7 @@ const SettingsPage = ({ onPressSubmit, onPressToggle, prayerRequest, stretchNoti
       />
       <ToggleSwitch
         isOn={stretchNotification}
-        onColor="#3b4761"
+        onColor="#00C301"
         offColor="#49EACA"
         label="Notification of STRETCH and Sunday morning"
         labelStyle={style.toggleSwitchLabel}
@@ -31,7 +31,7 @@ const SettingsPage = ({ onPressSubmit, onPressToggle, prayerRequest, stretchNoti
       />
       <ToggleSwitch
         isOn={workshopNeeds}
-        onColor="#3b4761"
+        onColor="#00C301"
         offColor="#49EACA"
         label="Workshop need's (TAs, meals, housing, etc"
         labelStyle={style.toggleSwitchLabel}
@@ -41,7 +41,7 @@ const SettingsPage = ({ onPressSubmit, onPressToggle, prayerRequest, stretchNoti
       />
       <ToggleSwitch
         isOn={thought}
-        onColor="#3b4761"
+        onColor="#00C301"
         offColor="#49EACA"
         label="Miscellaneous"
         labelStyle={style.toggleSwitchLabel}

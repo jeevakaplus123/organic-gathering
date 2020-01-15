@@ -19,7 +19,7 @@ const RegisterForm = ({
   workshopNeeds
 }) => (
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
-    <Text style={style.title}>Sign Up</Text>
+    <Text style={style.title}>Register</Text>
     <EmailInput
       errorMsg={fields.email.error}
       isInvalid={Boolean(fields.email.error)}
@@ -65,43 +65,6 @@ const RegisterForm = ({
       name="lastName"
       value={fields.lastName.value}
     />
-    <Text style={style.note}>We ask you to input your contact information so you can register to TA workshops from within the app, and not have to re-enter this info every time."</Text>
-    <Input
-    errorMsg={fields.address.error}
-    isInvalid={Boolean(fields.address.error)}
-    onChange={handleOnChange}
-    label="Address"
-    placeholder="Enter your Address"
-    name="address"
-    value={fields.address.value}
-  />
-  <Input
-      errorMsg={fields.city.error}
-      isInvalid={Boolean(fields.city.error)}
-      onChange={handleOnChange}
-      label="City"
-      placeholder="Enter your City"
-      name="city"
-      value={fields.city.value}
-    />
-    <Input
-      errorMsg={fields.state.error}
-      isInvalid={Boolean(fields.state.error)}
-      onChange={handleOnChange}
-      label="State"
-      placeholder="Enter your State"
-      name="state"
-      value={fields.state.value}
-    />
-    <Input
-      errorMsg={fields.zip.error}
-      isInvalid={Boolean(fields.zip.error)}
-      onChange={handleOnChange}
-      label="Zip"
-      placeholder="Enter your Zip"
-      name="zip"
-      value={fields.zip.value}
-    />
     <Input
       errorMsg={fields.dagger.error}
       isInvalid={Boolean(fields.dagger.error)}
@@ -131,7 +94,7 @@ const RegisterForm = ({
     />
     <ToggleSwitch
   isOn={prayerRequest}
-  onColor="#3b4761"
+  onColor="#00C301"
   offColor="#49EACA"
   label="Prayer request during workshops"
   labelStyle={style.toggleSwitchLabel}
@@ -142,7 +105,7 @@ const RegisterForm = ({
 />
 <ToggleSwitch
   isOn={stretchNotification}
-  onColor="#3b4761"
+  onColor="#00C301"
   offColor="#49EACA"
   label="Notification of STRETCH and Sunday morning"
   labelStyle={style.toggleSwitchLabel}
@@ -153,7 +116,7 @@ const RegisterForm = ({
 />
 <ToggleSwitch
   isOn={workshopNeeds}
-  onColor="#3b4761"
+  onColor="#00C301"
   offColor="#49EACA"
   label="Workshop need's (TAs, meals, housing, etc"
   labelStyle={style.toggleSwitchLabel}
@@ -164,7 +127,7 @@ const RegisterForm = ({
 />
 <ToggleSwitch
   isOn={thought}
-  onColor="#3b4761"
+  onColor="#00C301"
   offColor="#49EACA"
   label="Miscellaneous"
   labelStyle={style.toggleSwitchLabel}
@@ -174,7 +137,7 @@ const RegisterForm = ({
 />
 
     <Button onPress={onPressRegister} buttonStyle={style.buttonStyle} isPrimary>
-      SIGN UP
+      REGISTER
     </Button>
     <View style={style.textContainer}>
       <Text style={style.textStyle}>Already a member ?</Text>
