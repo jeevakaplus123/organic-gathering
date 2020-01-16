@@ -4,7 +4,7 @@ import {  Button } from "../../components/reusable"
 
 import style from "./Grow.stylesheet"
 
-  const GrowScreen = ({ onPressToolKit }) =>
+  const GrowScreen = ({ onPressToolKit, OnPressInfo }) =>
   <ScrollView behavior="padding" enabled contentContainerStyle={style.wrapper}>
   <View style={style.container}>
     <Image
@@ -22,5 +22,10 @@ import style from "./Grow.stylesheet"
         onPress={onPressToolKit(2)}
         buttonStyle={style.button}
       >Toolkit 2</Button>
+      <Button
+        isPrimary
+        onPress={OnPressInfo}
+        buttonStyle={style.button}
+      >Dagger/New Name/Cradle Song</Button>
   </ScrollView> 
   export default GrowScreen

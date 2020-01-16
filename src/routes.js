@@ -14,6 +14,7 @@ import Grow from './features/grow/Grow.container'
 import ShopDonate from './features/shopDonate/ShopDonate.container'
 import SquareupStore from './features/shopDonate/SquareupStore'
 import ToolKit from './features/grow/ToolKit'
+import Info from './features/grow/Info'
 import Workshop from './features/workshops/Workshops.container'
 import WorkshopRegister from './features/workshopRegister/WorkshopRegister.container'
 
@@ -97,6 +98,15 @@ const RootStack = createStackNavigator({
     },
     ToolKit: {
         screen: ToolKit,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#3b4761"
+        },
+        headerTintColor: "#ffffff"
+        }
+    },
+    Info: {
+        screen: Info,
         navigationOptions: {
             headerStyle: {
                 backgroundColor: "#3b4761"

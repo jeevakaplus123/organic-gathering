@@ -20,6 +20,29 @@ const style = StyleSheet.create({
         fontSize: 18,
         fontFamily: "HelveticaNeue-Medium"
     },
+    infoText: {
+        color: "#3b4761",
+        marginVertical: 5,
+        fontSize: 15,
+        flex: 1.8,
+        fontFamily: "HelveticaNeue-Medium"
+    },
+    label: {
+        color: "#3b4761",
+        marginVertical: 5,
+        flex: 1,
+        fontSize: 15,
+        fontFamily: "HelveticaNeue-Light"
+    },
+    infoContainer: {
+        flexDirection: "row",
+        marginVertical: 10,
+        marginTop: 15,
+        borderRadius: 5,
+        elevation: 0.5,
+        padding: 5,
+        paddingHorizontal: 10,
+    },
     imageStyle: {
         width: 148, height: 135
     },
