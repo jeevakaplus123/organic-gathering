@@ -36,6 +36,12 @@ const style = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         marginTop: 15
+    },
+    version: {
+        marginTop: 20,
+        textAlign: "center",
+        fontFamily: "HelveticaNeue-Light",
+        fontSize: 12
     }
 })
 

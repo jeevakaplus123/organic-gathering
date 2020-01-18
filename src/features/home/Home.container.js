@@ -15,7 +15,8 @@ class Home extends PureComponent {
 
             isLoading: false,
             initialLoading: true,
-            pushNotificationObject: {}
+            pushNotificationObject: {},
+            callOfInfoObject: {}
         }
     }
 
@@ -69,7 +70,8 @@ class Home extends PureComponent {
                         fcmToken
                     }
                     const pushNotificationObject = { prayerRequest, stretchNotification, workshopNeeds, thought }
-
+                    const callOfInfoObject = { dagger, newName, cradleSong }
+                    
                     if(prayerRequest) {
                          firebase.messaging().subscribeToTopic('prayerRequest')
                     }
@@ -98,6 +100,12 @@ class Home extends PureComponent {
                         
                         this.setState({
                             pushNotificationObject: pushNotificationObject
+                        })
+                    }
+                    if (JSON.stringify(callOfInfoObject) !== JSON.stringify(this.state.callOfInfoObject)){
+                        
+                        this.setState({
+                            callOfInfoObject: callOfInfoObject
                         })
                     }
 
@@ -130,8 +138,9 @@ class Home extends PureComponent {
         this.props.navigation.navigate("Connect")
     }
 
-    _onPressGrow = () => {        
-        this.props.navigation.navigate("Grow")
+    _onPressGrow = () => {
+        const { callOfInfoObject } = this.state
+        this.props.navigation.navigate("Grow", {callOfInfoObject: callOfInfoObject})
     }
 
     _onPressShopDonate = () => {        
@@ -139,10 +148,6 @@ class Home extends PureComponent {
     }
 
     render() {
-        const { pushNotificationObject } = this.state
-
-        console.log(pushNotificationObject)
-        
         return (
             <HomeScreen
                 {...this.props}

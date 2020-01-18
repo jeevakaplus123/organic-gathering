@@ -15,7 +15,7 @@ import {NavigationEvents} from 'react-navigation'
         <Button buttonStyle={style.button} isPrimary onPress={onPressConnect}>Connect</Button>
         <Button buttonStyle={style.button} isPrimary onPress={onPressGrow}>Grow</Button>
         <Button buttonStyle={style.button} isPrimary onPress={onPressShopDonate}>Shop/Donate</Button>
-        <Button buttonStyle={style.button} isPrimary onPress={onPressSettings}>Settings</Button>
+        <Button buttonStyle={style.button} isPrimary onPress={onPressSettings}>Notifications</Button>
         <NavigationEvents onDidFocus={onDidFocus} />
       </View>
       <Button buttonStyle={style.sign_outButton} onPress={onPressLogout}>Sign out</Button>

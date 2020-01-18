@@ -14,7 +14,6 @@ class Workshop extends PureComponent {
     }
 
     componentDidMount(){
-        console.log(this.props.initialLoading)
         
         if(this.props.initialLoading){
             const privateToken = "I6NFHVSC7T43DVZOZCG4"
