@@ -9,8 +9,9 @@ export const firebaseConfig =  {
 }
 
 export const backendBaseUrl = "https://www.eventbriteapi.com/v3"
+export const wpJsonBaseUrl = "http://organicgathering.org/wp-json/wp/v2/pages"
 
-export const checkStatusAndGetJSON = (fetchResponse) => new Promise((resolve, reject) => {    
+export const checkStatusAndGetJSON = (fetchResponse) => new Promise((resolve, reject) => {
   if (fetchResponse.ok) {
       resolve(fetchResponse.json())
   }

@@ -1,7 +1,10 @@
 import React, { PureComponent } from "react"
 import { View, Text, ScrollView, Dimensions } from "react-native"
+import { connect } from 'react-redux'
 import style from "./Grow.stylesheet"
-import { WebView } from 'react-native-webview'
+import { Loader } from "../../components/reusable"
+import HTML from 'react-native-render-html'
+import {getToolkitContent} from "../../actions/toolkitActions"
 class ToolKit extends PureComponent {
     constructor(props) {
         super(props)
@@ -11,25 +14,47 @@ class ToolKit extends PureComponent {
           }
     }
 
-    componentDidMount(){
+    async componentDidMount(){
+        const { navigation, fetchToolkitContent, contentArray } = this.props
+        const toolKitId = JSON.stringify(navigation.getParam('toolKitId', 'NO-ID'))
+        const slug = toolKitId === "1" ? "the-organic-heartchange-toolkit/" : "organic-heartchange-toolkit-2/"
+        if(!contentArray.some(item=> item.id ===toolKitId)){
+            const result = await fetchToolkitContent(slug, toolKitId)
+
+        }
     }
 
- 
     render() {
-        const { navigation } = this.props
-        const toolkit1_iframe = '<div align="center"><iframe frameBorder="0" width="85%" height="90%" src="https://docs.google.com/document/d/e/2PACX-1vRVV6ER-ytzNH7BZnNHi_S2UzHc_TYH_DCn2JoaMQDYHSY2A4JKeWi2w2UjgMnA1FBrrIXxPGS8PcYJ/pub?embedded=true"></iframe></div>'
-        const toolkit2_iframe = '<div align="center"><iframe frameBorder="0" width="95%" height="85%" src="https://docs.google.com/document/d/e/2PACX-1vQpqM6rCdG_tbljbaQ2ZctoKtWgjWjY5kzC49yBHe1B1VAFh4PRMCOtu1dhkRkAuTuquoaPpaw72XV4/pub?embedded=true"></iframe></div>'
+        const { navigation, contentArray, isLoading } = this.props
         const toolKitId = JSON.stringify(navigation.getParam('toolKitId', 'NO-ID'))
-        
+        const htmlObject = contentArray.find(item=> item.id === toolKitId)
+        const htmlContent = typeof htmlObject === "object" ? htmlObject.content : "<P>HTML</P>"
         return (
-                <ScrollView contentContainerStyle={{flex: 1, justifyContent: "center",marginTop: 30}}>
-                <Text style={style.title}>Toolkit {toolKitId}</Text>
-                <WebView
-                    scalesPageToFit={true}
-                    style={{marginTop: 20}}
-                    source={{ html: toolKitId === "1" ? toolkit1_iframe : toolkit2_iframe }}
-                /></ScrollView>
+            <ScrollView style={{ flex: 1 }}>
+            {!isLoading ?
+            <HTML html={htmlContent} 
+            imagesMaxWidth={Dimensions.get('window').width} 
+            containerStyle={{ margin: 10, marginHorizontal: 20,}}
+            baseFontStyle={{fontFamily: "HelveticaNeue-Light",textAlign: "center", color: 'rgba(51, 79, 97, 0.8)'}}
+            tagsStyles={{
+                strong:{fontFamily: "HelveticaNeue-Bold", color: "#3b4761"}
+            }}
+            />
+            : <Loader />}
+        </ScrollView>
         )
     }
 }
-export default ToolKit
+const mapStateToProps = ({ toolkit }) => ({ 
+    contentArray: toolkit.content,
+    isLoading: toolkit.isLoading
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchToolkitContent: (slug, toolkitId) => dispatch(getToolkitContent(slug, toolkitId))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(ToolKit)
