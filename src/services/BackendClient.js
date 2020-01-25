@@ -1,5 +1,4 @@
 import { backendBaseUrl, checkStatusAndGetJSON, wpJsonBaseUrl } from "../utils/config"
-import apiFetch from '@wordpress/api-fetch';
 // Helpers
 const get = (path, token = false) => {
     const url = backendBaseUrl + path

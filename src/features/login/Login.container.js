@@ -3,9 +3,11 @@ import { connect } from 'react-redux'
 import { emailSignIn } from '../../actions/loginActions'
 import LoginScreen from './LoginForm'
 import { validator } from '../../utils/validator'
+import firebase from 'react-native-firebase'
 class Login extends PureComponent {
     constructor(props) {
         super(props);
+        this.ref = firebase.firestore().collection('users')
         this.state = {
             fields: {
                 email: {
@@ -19,8 +21,16 @@ class Login extends PureComponent {
             },
             isLoading: false,
             keepMeLoggedIn: false,
+            verificationStatus: false
         };
     }
+
+    async componentDidMount() {        
+        try {
+            this.ref.onSnapshot(this.onCollectionUpdate)
+        } catch (error) { }
+    }
+
 
     _handleOnChange = (value, name) => {
         const error = validator(name, value);
@@ -71,16 +81,44 @@ class Login extends PureComponent {
     };
 
     _onPressLogin = () => {
-        const { fields, keepMeLoggedIn } = this.state;
+        const { fields, keepMeLoggedIn, verificationStatus } = this.state
         if (this._validateForm()) {
             this.props.signInWithEmailAndPassword(
                 fields.email.value,
                 fields.password.value,
                 keepMeLoggedIn,
+                verificationStatus
             );
         }
-    };
-    _onPressRegister = () => this.props.navigation.navigate('Register');
+    }
+
+    onCollectionUpdate = querySnapshot => {
+        const { fields } = this.state
+
+        querySnapshot.forEach(doc => {
+            if (doc.exists) {
+                const {
+                    email,
+                    verificationStatus
+                } = doc.data();
+
+                if (email === fields.email.value) {
+                    const userObject = {
+                        verificationStatus
+                    }
+                    console.log(verificationStatus)
+                    
+                    this.setState({
+                        verificationStatus: verificationStatus
+                    })
+                }
+            } else {
+                console.log('No such document!')
+            }
+        })
+    }
+    
+    _onPressRegister = () => this.props.navigation.navigate('Register')
 
     _onPressForgotPassword = () =>
         this.props.navigation.navigate('ForgotPassword');
@@ -112,8 +150,8 @@ const mapStateToProps = ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    signInWithEmailAndPassword: (email, password, keepMeLoggedIn) =>
-        dispatch(emailSignIn(email, password, keepMeLoggedIn)),
+    signInWithEmailAndPassword: (email, password, keepMeLoggedIn, verificationStatus) =>
+        dispatch(emailSignIn(email, password, keepMeLoggedIn, verificationStatus)),
 });
 
 export default connect(

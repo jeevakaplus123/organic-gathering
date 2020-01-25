@@ -20,7 +20,7 @@ const sendLoginFailure = () => ({
   type: SEND_LOGIN_FAILURE
 })
 
-export const emailSignIn = (email, password, keepMeLoggedIn) => (dispatch) => {
+export const emailSignIn = (email, password, keepMeLoggedIn, verificationStatus) => (dispatch) => {
   dispatch(sendLoginRequest())
   try {
     firebase
@@ -31,13 +31,18 @@ export const emailSignIn = (email, password, keepMeLoggedIn) => (dispatch) => {
           // firebase.firestore().collection('users').onSnapshot(onCollectionUpdate(res.user, keepMeLoggedIn))
           
           // authStorage(res.user, keepMeLoggedIn)
-          if(keepMeLoggedIn){
-            saveData("STORAGE_KEY",
-            JSON.stringify(res.user)
-        )
+          if(verificationStatus){
+            if(keepMeLoggedIn){
+              saveData("STORAGE_KEY",
+              JSON.stringify(res.user)
+          )
+            }
+            dispatch(sendLoginSuccess())
+            NavigationService.navigate('Home')
           }
-          dispatch(sendLoginSuccess())
-          NavigationService.navigate('Home')
+
+          NavigationService.navigate('Verification')
+
         })
       .catch(error => {
         dispatch(sendLoginFailure())

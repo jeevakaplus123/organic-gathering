@@ -10,12 +10,12 @@ export const notifyError = (errorMsg = false) => Snackbar.show({
     title: errorMsg ? errorMsg : "server failed"
 })
 
-export const notifySuccess = (info, delay = 0) => setTimeout(() => Snackbar.show({
+export const notifySuccess = (info, delay = 0, message=false) => setTimeout(() => Snackbar.show({
     action: {
         color: "white",
         title: "✕"
     },
-    backgroundColor: "#009900",
+    backgroundColor: message ? "#000000" : "#009900",
     duration: 5000,
     title: info
 }), delay)

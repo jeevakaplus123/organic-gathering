@@ -17,6 +17,7 @@ import ToolKit from './features/grow/ToolKit'
 import Info from './features/grow/Info'
 import Workshop from './features/workshops/Workshops.container'
 import WorkshopRegister from './features/workshopRegister/WorkshopRegister.container'
+import Verification from './features/verification/Verification.container'
 
 import ForgotPassword from './features/forgotPassword/ForgotPassword.container'
 
@@ -143,6 +144,15 @@ const RootStack = createStackNavigator({
     },
     WorkshopRegister: {
         screen: WorkshopRegister,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#3b4761"
+        },
+        headerTintColor: "#ffffff"
+        }
+    },
+    Verification: {
+        screen: Verification,
         navigationOptions: {
             headerStyle: {
                 backgroundColor: "#3b4761"

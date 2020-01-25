@@ -49,7 +49,10 @@ class Register extends PureComponent {
         stretchNotification: true,
         workshopNeeds: true,
         thought: true,
-        fcmToken: ""
+        fcmToken: "",
+        verificationStatus: false,
+        securityQuestion1: "",
+        securityQuestion2: ""
     }
     }
 
@@ -121,7 +124,7 @@ class Register extends PureComponent {
     }
 
     _onPressRegister = () =>{
-        const { fields,  prayerRequest, stretchNotification, workshopNeeds, thought, fcmToken} = this.state
+        const { fields,  prayerRequest, stretchNotification, workshopNeeds, thought, fcmToken, verificationStatus, securityQuestion1, securityQuestion2} = this.state
         if (this._validateForm()) {
         try {
             firebase
@@ -141,7 +144,10 @@ class Register extends PureComponent {
                         stretchNotification: stretchNotification,
                         workshopNeeds: workshopNeeds,
                         thought: thought,
-                        fcmToken: fcmToken
+                        fcmToken: fcmToken,
+                        verificationStatus: verificationStatus,
+                        securityQuestion1: securityQuestion1,
+                        securityQuestion2: securityQuestion2
                       })
                        this.props.navigation.navigate("Login")
                  }).catch(error =>{
