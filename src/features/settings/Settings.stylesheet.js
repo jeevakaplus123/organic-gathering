@@ -7,10 +7,16 @@ const style = StyleSheet.create({
         padding: 25,
         flexGrow: 1
     },
+    row: {
+        flexDirection: "row"
+    },
     container: {
         alignItems: "center",
         justifyContent: "center",
         flex: 1
+    },
+    flatlistContainer: {
+        justifyContent: 'space-between'
     },
     title: {
         color: "#3b4761",
@@ -18,6 +24,10 @@ const style = StyleSheet.create({
         textAlign: "center",
         marginBottom: 15,
         fontSize: 24
+    },
+    notificationText: {
+        color: "#ffffff",
+        fontFamily: "HelveticaNeue-Medium",
     },
     statement: {
         color: "#49EACA",
