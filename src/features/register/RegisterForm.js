@@ -92,6 +92,7 @@ const RegisterForm = ({
       name="cradleSong"
       value={fields.cradleSong.value}
     />
+    <Text>choose which types of messages you want to receive in the app (these settings can be changed later</Text>
     <ToggleSwitch
   isOn={prayerRequest}
   onColor="#00C301"

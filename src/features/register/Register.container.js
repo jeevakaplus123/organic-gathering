@@ -147,8 +147,29 @@ class Register extends PureComponent {
                         fcmToken: fcmToken,
                         verificationStatus: verificationStatus,
                         securityQuestion1: securityQuestion1,
-                        securityQuestion2: securityQuestion2
+                        securityQuestion2: securityQuestion2,
+                        prayerRequest1: false,
+                        prayerRequest2: false,
+                        prayerRequest3: false,
+                        prayerRequest4: false,
+                        prayerRequest5: false,
+                        prayerRequest6: false,
+                        prayerRequest7: false,
+                        prayerRequest8: false,
+                        prayerRequest9: false,
+                        prayerRequest10: false,
+                        prayerRequest11: false,
+                        prayerRequest12: false,
+                        prayerRequest13: false,
+                        prayerRequest14: false,
+                        prayerRequest15: false,
+                        prayerRequest16: false,
+                        prayerRequest17: true,
+                        prayerRequest18: false,
+                        prayerRequest19: false,
+                        prayerRequest20: false
                       })
+                      notifySuccess("Registered Successfully. Please Login...!")
                        this.props.navigation.navigate("Login")
                  }).catch(error =>{
                      notifyError(error.message)
