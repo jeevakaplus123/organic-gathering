@@ -79,7 +79,7 @@ _onPressSubmit= () => {
       securityQuestion1: fields.when.value,
       securityQuestion2: fields.who.value
 })
-notifySuccess("You need to wait getting approval.")
+notifySuccess("Contact info@organicgathering.org to have them verify your account.")
 setTimeout(() => {
   navigation.navigate("Login")
 }, 2000)
