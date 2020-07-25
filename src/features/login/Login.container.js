@@ -25,12 +25,7 @@ class Login extends PureComponent {
         };
     }
 
-    async componentDidMount() {        
-        try {
-            this.ref.onSnapshot(this.onCollectionUpdate)
-        } catch (error) { }
-    }
-
+    
 
     _handleOnChange = (value, name) => {
         const error = validator(name, value);
@@ -81,6 +76,20 @@ class Login extends PureComponent {
     };
 
     _onPressLogin = () => {
+        const { fields, keepMeLoggedIn } = this.state
+        if (this._validateForm()) {
+            this.props.signInWithEmailAndPassword(
+                fields.email.value,
+                fields.password.value,
+                keepMeLoggedIn
+            )
+        }
+            // this.ref.onSnapshot(this.onCollectionUpdate)
+            
+    }
+
+    _afterSetStateFinished = () => {
+        
         const { fields, keepMeLoggedIn, verificationStatus } = this.state
         if (this._validateForm()) {
             this.props.signInWithEmailAndPassword(
@@ -88,12 +97,12 @@ class Login extends PureComponent {
                 fields.password.value,
                 keepMeLoggedIn,
                 verificationStatus
-            );
+            )
         }
     }
 
     onCollectionUpdate = querySnapshot => {
-        const { fields } = this.state
+        const { fields, verificationStatus } = this.state
 
         querySnapshot.forEach(doc => {
             if (doc.exists) {
@@ -106,16 +115,19 @@ class Login extends PureComponent {
                     const userObject = {
                         verificationStatus
                     }
-                    console.log(verificationStatus)
-                    
                     this.setState({
                         verificationStatus: verificationStatus
-                    })
+                    }, () => {
+                        this._afterSetStateFinished()
+                    });
                 }
+                else this._afterSetStateFinished()
             } else {
                 console.log('No such document!')
+
             }
         })
+        return verificationStatus
     }
     
     _onPressRegister = () => this.props.navigation.navigate('Register')

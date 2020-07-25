@@ -20,34 +20,54 @@ const sendLoginFailure = () => ({
   type: SEND_LOGIN_FAILURE
 })
 
-export const emailSignIn = (email, password, keepMeLoggedIn, verificationStatus) => (dispatch) => {
+export const emailSignIn = (email, password, keepMeLoggedIn) => async (dispatch) => {
+
   dispatch(sendLoginRequest())
   try {
-    firebase
+    const returnUser = await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-          dispatch(fetchUserSuccess(res.user._user))
-          // firebase.firestore().collection('users').onSnapshot(onCollectionUpdate(res.user, keepMeLoggedIn))
-          
-          // authStorage(res.user, keepMeLoggedIn)
-          if(verificationStatus){
-            if(keepMeLoggedIn){
-              saveData("STORAGE_KEY",
-              JSON.stringify(res.user)
-          )
+        dispatch(fetchUserSuccess(res.user._user))
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(idToken => {
+
+          fetch(`https://firestore.googleapis.com/v1/projects/organic-gathering-82890/databases/(default)/documents/users/${res.user._user.uid}`,
+            {
+              method: 'get',
+              headers: {
+                'Authorization': `Bearer ${idToken}`
+              }
             }
-            dispatch(sendLoginSuccess())
-            NavigationService.navigate('Home')
-          }
+          )
+            .then((response) => response.json()
+            )
+            .then(responseJson => {
 
-          NavigationService.navigate('Verification')
+              const { fields: { verificationStatus: { booleanValue } } } = responseJson
 
+              if (booleanValue) {
+                if (keepMeLoggedIn) {
+                  saveData("STORAGE_KEY",
+                    JSON.stringify(res.user)
+                  )
+                }
+                dispatch(sendLoginSuccess())
+                NavigationService.navigate('Home')
+              }
+              else {
+                NavigationService.navigate('Verification')
+              }
+            }
+            )
+            .catch((error) => {
+              console.error(error)
+            })
+        }).catch(function (error) {
+          // Handle error
         })
+      })
       .catch(error => {
         dispatch(sendLoginFailure())
-          console.log(error.message)
-
         notifyError(error.message)
       })
   } catch (error) {

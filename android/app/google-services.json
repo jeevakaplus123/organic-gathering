@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "909458343921",
-    "firebase_url": "https://organic-gathering-5bb02.firebaseio.com",
-    "project_id": "organic-gathering-5bb02",
-    "storage_bucket": "organic-gathering-5bb02.appspot.com"
+    "project_number": "636663033908",
+    "firebase_url": "https://organic-gathering-82890.firebaseio.com",
+    "project_id": "organic-gathering-82890",
+    "storage_bucket": "organic-gathering-82890.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:909458343921:android:d6338b3408491202596650",
+        "mobilesdk_app_id": "1:636663033908:android:bdd38e2a0bd007b3049a61",
         "android_client_info": {
           "package_name": "com.organic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "909458343921-f2u3c36p2nl9a0ja1ha2qpgs43b85o0k.apps.googleusercontent.com",
+          "client_id": "636663033908-imlqi5oi32eoknp6tgjcgug5qq071qt1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCQwvDnygL1EMPl-m_Qz8HokwTKYUYacYE"
+          "current_key": "AIzaSyD0FiE7LSQBveht2OvnnBy0EKcbEbB_KPI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "909458343921-f2u3c36p2nl9a0ja1ha2qpgs43b85o0k.apps.googleusercontent.com",
+              "client_id": "636663033908-imlqi5oi32eoknp6tgjcgug5qq071qt1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

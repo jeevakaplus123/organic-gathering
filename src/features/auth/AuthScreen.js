@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 import { connect } from 'react-redux'
-import {ActivityIndicator, View, StyleSheet} from 'react-native'
+import {ActivityIndicator, Alert, View, StyleSheet} from 'react-native'
 import {readData} from '../../utils/asyncStorage'
 import { setAuthData } from '../../actions/userActions'
 import AsyncStorage from '@react-native-community/async-storage'
@@ -13,13 +13,52 @@ class AuthScreen extends PureComponent {
   async componentDidMount() {
     try {
       if (this.checkPermission()) {
-        this.checkedLoggedUser();
+        this.checkedLoggedUser()
       } else {
-        this.requestPermission();
+        this.requestPermission()
+        this.messageListener()
       }
     } catch (error) { }
     // firebase.messaging().subscribeToTopic('aaa');
   }
+
+  showAlert = (title, message) => {
+    Alert.alert(
+     title,
+     message,
+     [
+      {text: "OK", onPress: () => console.log("OK Pressed")},
+     ],
+     {cancelable: false},
+    )
+   }
+
+  messageListener = async () => {
+    this.notificationListener = firebase.notifications().onNotification((notification) => {
+      const { title, body } = notification
+      // this.showAlert(title, body)
+      // console.log(title)
+
+    })
+   
+    this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen) => {
+      const { title, body } = notificationOpen.notification
+      // this.showAlert(title, body)
+      // console.log(title)
+
+    })
+   
+    const notificationOpen = await firebase.notifications().getInitialNotification();
+    if (notificationOpen) {
+      const { title, body } = notificationOpen.notification
+      // this.showAlert(title, body)
+      // console.log(title)
+
+    }
+   
+    this.messageListener = firebase.messaging().onMessage((message) => {
+    })
+   }
 
   async checkPermission() {
     firebase
@@ -51,7 +90,8 @@ class AuthScreen extends PureComponent {
     const value = await readData('STORAGE_KEY')
     if (value !== null) {
       this.props.authDataToState(value)
-      this._navigate('Home');
+      this.messageListener()
+      this._navigate('Home')
     } else {
       this._navigate('Landing');
     }

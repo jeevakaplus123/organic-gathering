@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.3",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-native": "^3.8.1",
     "firebase": "^7.4.0",
     "moment": "^2.24.0",
     "react": "16.9.0",

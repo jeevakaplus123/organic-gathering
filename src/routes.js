@@ -1,6 +1,9 @@
+import React, { Component } from 'react'
 import {
     createAppContainer
 } from 'react-navigation'
+import Icon from "react-native-vector-icons/FontAwesome"
+import { TouchableOpacity, Linking } from "react-native"
 import { createStackNavigator } from 'react-navigation-stack'
 import Auth from './features/auth/AuthScreen'
 import Home from './features/home/Home.container'
@@ -18,8 +21,10 @@ import Info from './features/grow/Info'
 import Workshop from './features/workshops/Workshops.container'
 import WorkshopRegister from './features/workshopRegister/WorkshopRegister.container'
 import Verification from './features/verification/Verification.container'
+import Notifications from './features/notifications/Notification.container'
 
 import ForgotPassword from './features/forgotPassword/ForgotPassword.container'
+import NavigationService from './services/NavigationService'
 
 const RootStack = createStackNavigator({
     Auth: {
@@ -62,13 +67,7 @@ const RootStack = createStackNavigator({
         },
     },
     Settings: {
-        screen: Settings,
-        navigationOptions: {
-            headerStyle: {
-                backgroundColor: "#3b4761"
-        },
-        headerTintColor: "#ffffff"
-        }
+        screen: Settings
     },
     Connect: {
         screen: Connect,
@@ -153,6 +152,15 @@ const RootStack = createStackNavigator({
     },
     Verification: {
         screen: Verification,
+        navigationOptions: {
+            headerStyle: {
+                backgroundColor: "#3b4761"
+        },
+        headerTintColor: "#ffffff"
+        }
+    },
+    Notifications: {
+        screen: Notifications,
         navigationOptions: {
             headerStyle: {
                 backgroundColor: "#3b4761"
