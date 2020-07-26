@@ -39,6 +39,11 @@ target 'organic' do
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
   pod 'react-native-sms', :path => '../node_modules/react-native-sms'
+pod 'Firebase/Core', '~> 6.13.0'
+pod 'Firebase/Firestore', '~> 6.13.0'
+pod 'Firebase/Auth', '~> 6.13.0'
+pod 'Firebase/Messaging', '~> 6.13.0'
+pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
 
   target 'organicTests' do
     inherit! :search_paths
