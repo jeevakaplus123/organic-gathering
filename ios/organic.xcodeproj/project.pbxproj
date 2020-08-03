@@ -19,6 +19,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* organicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* organicTests.m */; };
 		2E4DEF2624AFC64600B9AEB0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E4DEF2524AFC64600B9AEB0 /* GoogleService-Info.plist */; };
+		2E8C2B2F24D8200500391E14 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E8C2B2E24D8200500391E14 /* AppCenter-Config.plist */; };
 		41845E0A72424BBBBA085CEA /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B29A8FB121FA4D53A2BB7A77 /* FontAwesome.ttf */; };
 		419FED17910FFBF9281FB677 /* libPods-organic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AE8AD8C12F6DAAD53B29D82D /* libPods-organic.a */; };
 		44FBAD6A2AA340699E525EC1 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EA68349022D947A7B24D4D13 /* SimpleLineIcons.ttf */; };
@@ -81,6 +82,7 @@
 		2D02E4901E0B4A5D006451C7 /* organic-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "organic-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E23379799F5D64F969669D5 /* Pods-organic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-organic.debug.xcconfig"; path = "Target Support Files/Pods-organic/Pods-organic.debug.xcconfig"; sourceTree = "<group>"; };
 		2E4DEF2524AFC64600B9AEB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../New Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2E8C2B2E24D8200500391E14 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "../../AppCenter-Config.plist"; sourceTree = "<group>"; };
 		3407874A1B214D1B99240AD3 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		3B7BF019C00C72C9A2EA1E9B /* Pods-organic-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-organic-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-organic-tvOS/Pods-organic-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		41FAD2EAB63A47D3AAA2249B /* HelveticaNeue-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Medium.ttf"; path = "../assets/fonts/HelveticaNeue-Medium.ttf"; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2E8C2B2E24D8200500391E14 /* AppCenter-Config.plist */,
 				2E4DEF2524AFC64600B9AEB0 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* organic */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -426,6 +429,7 @@
 				CA35C60B39ED4BC0834C3520 /* FontAwesome5_Solid.ttf in Resources */,
 				18F99629F9B342F483FDF39F /* Fontisto.ttf in Resources */,
 				FFDB6B965DBC45ACB38E9841 /* Foundation.ttf in Resources */,
+				2E8C2B2F24D8200500391E14 /* AppCenter-Config.plist in Resources */,
 				AE0780B7BD2547C99B3D9836 /* Ionicons.ttf in Resources */,
 				A8C00E42007B4132BD9B0735 /* MaterialCommunityIcons.ttf in Resources */,
 				D7E465F2D65543679D4920FF /* MaterialIcons.ttf in Resources */,
