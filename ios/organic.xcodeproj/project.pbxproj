@@ -82,6 +82,7 @@
 		2D02E4901E0B4A5D006451C7 /* organic-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "organic-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E23379799F5D64F969669D5 /* Pods-organic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-organic.debug.xcconfig"; path = "Target Support Files/Pods-organic/Pods-organic.debug.xcconfig"; sourceTree = "<group>"; };
 		2E4DEF2524AFC64600B9AEB0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../New Plist/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2E8B692F24E5C1D900761EEC /* organic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = organic.entitlements; path = organic/organic.entitlements; sourceTree = "<group>"; };
 		2E8C2B2E24D8200500391E14 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "../../AppCenter-Config.plist"; sourceTree = "<group>"; };
 		3407874A1B214D1B99240AD3 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		3B7BF019C00C72C9A2EA1E9B /* Pods-organic-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-organic-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-organic-tvOS/Pods-organic-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		13B07FAE1A68108700A75B9A /* organic */ = {
 			isa = PBXGroup;
 			children = (
+				2E8B692F24E5C1D900761EEC /* organic.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -778,6 +780,7 @@
 			baseConfigurationReference = 2E23379799F5D64F969669D5 /* Pods-organic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = organic/organic.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -802,6 +805,7 @@
 			baseConfigurationReference = F5F41F8E2942F06A84E033BF /* Pods-organic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = organic/organic.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
