@@ -24,9 +24,7 @@ export const getWorkshops = (token) => (dispatch) => {
     getWorkshopList(token)
         .then(( response ) => {
           console.log(response)
-          const events = {events: response.events}
-            console.log(events)
-            
+          const { events } = response            
             dispatch(sendFetchWorkshopSuccess(events))
         })
         .catch(error => {
