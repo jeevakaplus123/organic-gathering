@@ -25,7 +25,13 @@ const style = StyleSheet.create({
     },
     button: {
         marginTop: 25,
+        paddingHorizontal: 10,
         height: 50
+    },
+    buttonLarge: {
+        height: 75,
+        paddingHorizontal: 10,
+        marginTop: 25
     },
     stylOld: {
         flex: 1,

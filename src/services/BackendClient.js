@@ -2,8 +2,13 @@ import { backendBaseUrl, checkStatusAndGetJSON, wpJsonBaseUrl } from "../utils/c
 // Helpers
 const get = (path, token = false) => {
     const url = backendBaseUrl + path
-    
-    return fetch(url).then(checkStatusAndGetJSON)
+    const headers = { Authorization: "Bearer I6NFHVSC7T43DVZOZCG4" }
+    return fetch(url,{
+        method: 'GET'
+        // headers: {
+        //   'Authorization': "Bearer I6NFHVSC7T43DVZOZCG4"
+        // }
+      }).then(checkStatusAndGetJSON)
 }
 const getContent = (path) => {
     const url = wpJsonBaseUrl + path
@@ -11,5 +16,5 @@ const getContent = (path) => {
     return fetch(url).then(checkStatusAndGetJSON)
 }
 
-export const getWorkshopList = (token) => get(`/users/me/owned_events?token=${token}&order_by=start_asc&status=live,started`)
+export const getWorkshopList = (token) => get(`/organizations/242387259401/events?token=I6NFHVSC7T43DVZOZCG4`, token)
 export const getToolkitContentById = (slug) => getContent(`/?slug=${slug}`)
