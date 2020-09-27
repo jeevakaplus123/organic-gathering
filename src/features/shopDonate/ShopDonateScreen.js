@@ -20,7 +20,7 @@ import style from "./ShopDonate.stylesheet"
       <Button
         isPrimary
         onPress={onPressSquareupStore("squareupstore")}
-        buttonStyle={style.button}
+        buttonStyle={style.buttonLarge}
         textStyle={{textAlign: "center"}}
       >Donate to support people, regions, or general fund</Button>
   </ScrollView> 

@@ -15,7 +15,7 @@ export const workshopReducer = (state = initialState, action) => {
         case actions.SEND_FETCH_WORKSHOP_LIST_SUCCESS:
             return {
                 ...state,
-                ...action.payload,
+                events: action.payload,
                 initialLoading: false,
                 isLoading: false
             }
