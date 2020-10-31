@@ -16,5 +16,5 @@ const getContent = (path) => {
     return fetch(url).then(checkStatusAndGetJSON)
 }
 
-export const getWorkshopList = (token) => get(`/organizations/242387259401/events?token=I6NFHVSC7T43DVZOZCG4`, token)
+export const getWorkshopList = (token) => get(`/organizations/242387259401/events?token=I6NFHVSC7T43DVZOZCG4&order_by=start_asc&status=live,started`, token)
 export const getToolkitContentById = (slug) => getContent(`/?slug=${slug}`)
