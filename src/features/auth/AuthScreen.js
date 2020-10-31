@@ -12,8 +12,10 @@ class AuthScreen extends PureComponent {
   }
   async componentDidMount() {
     try {
-      if (this.checkPermission()) {
-        this.checkedLoggedUser()
+      const permissionStatus = await this.checkPermission()
+      if (permissionStatus) {
+        this.checkedLoggedUser();
+        this.messageListener();
       } else {
         this.requestPermission()
         this.messageListener()
@@ -61,29 +63,13 @@ class AuthScreen extends PureComponent {
    }
 
   async checkPermission() {
-    firebase
-      .messaging()
-      .hasPermission()
-      .then(enabled => {
-        if (enabled) {
-          return true;
-        } else {
-          return false;
-        }
-      });
+    const permissionStatus = await firebase.messaging().hasPermission();
+    return permissionStatus;
   }
 
   async requestPermission() {
-    firebase
-      .messaging()
-      .requestPermission()
-      .then(() => {
-        this.checkedLoggedUser();
-      })
-      .catch(error => {
-        // Todo : Need to add popup for request permission
-        console.log('permission rejected');
-      });
+    const authStatus = await firebase.messaging().requestPermission();
+    this.checkedLoggedUser();
   }
 
   async checkedLoggedUser() {
