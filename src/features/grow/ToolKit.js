@@ -35,7 +35,7 @@ class ToolKit extends PureComponent {
             <HTML html={htmlContent} 
             imagesMaxWidth={Dimensions.get('window').width} 
             containerStyle={{ margin: 10, marginHorizontal: 20,}}
-            baseFontStyle={{fontFamily: "HelveticaNeue-Light",textAlign: "center", color: 'rgba(51, 79, 97, 0.8)'}}
+            baseFontStyle={{fontFamily: "HelveticaNeue-Light", color: 'rgba(51, 79, 97, 0.8)'}}
             tagsStyles={{
                 strong:{fontFamily: "HelveticaNeue-Bold", color: "#3b4761"}
             }}

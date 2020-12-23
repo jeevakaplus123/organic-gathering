@@ -16,7 +16,7 @@ static navigationOptions = ({navigation}) => ({
 },
 headerRight: (
   <View style={{flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-  <Text style={style.notificationText}>click here to view all messages --></Text>
+  <Text style={style.notificationText}>click to view all messages --></Text>
     <TouchableOpacity style= {{ marginRight: 15, padding: 5 }} onPress={() => navigation.navigate("Notifications", {pushNotificationObject: navigation.state.params.pushNotificationObject})}>
     <Icon color="white" name="bell" size={23}/>
     </TouchableOpacity>

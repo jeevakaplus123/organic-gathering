@@ -75,7 +75,7 @@ const SettingsPage = ({ onPressSubmit, onPressToggle, onPressSubGroup, prayerReq
         onToggle={onPressToggle("thought")}
       />
     </View>
-    <Text style={style.statement}>To receive special notifications, select from the sub groups below</Text>
+    <Text style={style.statement}>To receive prayer requests for specific people, select any of the sub groups below</Text>
     <View style={style.row}>
     <Checkbox
       code="prayerRequest1"
